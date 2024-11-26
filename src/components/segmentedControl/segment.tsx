@@ -50,6 +50,10 @@ export type SegmentProps = SegmentedControlItemProps & {
    */
   onPress?: (index: number) => void;
   /**
+   * Callback for when segment has long pressed.
+   */
+  onLongPress?: (index: number) => void;
+  /**
    * The index of the segment.
    */
   index: number;
@@ -120,6 +124,7 @@ const Segment = React.memo((props: SegmentProps) => {
       onLayout={segmentOnLayout}
       style={segmentStyle}
       onPress={onSegmentPress}
+      onLongPress={() => props.onLongPress?.(index)}
       row
       flexG
       center
