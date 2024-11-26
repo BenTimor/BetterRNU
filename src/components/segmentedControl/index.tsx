@@ -46,6 +46,10 @@ export type SegmentedControlProps = {
    */
   onChangeIndex?: (index: number) => void;
   /**
+   * Callback for when segment has long pressed.
+   */
+  onLongPress?: (index: number) => void;
+  /**
    * Initial index to be active.
    */
   initialIndex?: number;
@@ -141,7 +145,8 @@ const SegmentedControl = (props: SegmentedControlProps) => {
     segmentDividerWidth,
     segmentDividerColor,
     label,
-    labelProps
+    labelProps,
+    onLongPress
   } = useSegmentedControlPreset(props);
   const animatedSelectedIndex = useSharedValue(initialIndex);
   const segmentsStyle = useSharedValue([] as {x: number; width: number}[]);
@@ -230,6 +235,7 @@ const SegmentedControl = (props: SegmentedControlProps) => {
             iconTintColor={iconTintColor}
             {...segments[index]}
             testID={testID}
+            onLongPress={onLongPress}
           />
           {!isLastSegment && shouldRenderDividers && (
             <View
